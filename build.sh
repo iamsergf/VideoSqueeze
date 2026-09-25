@@ -33,7 +33,8 @@ cat > $APP/Contents/Info.plist <<PLIST
 </dict></plist>
 PLIST
 
+xattr -cr $APP
 codesign --force --deep -s - $APP
 # Zip for GitHub Releases
-ditto -c -k --keepParent $APP build/VideoSqueeze.zip
+ditto -c -k --norsrc --noextattr --keepParent $APP build/VideoSqueeze.zip
 echo "Built $APP and build/VideoSqueeze.zip"
